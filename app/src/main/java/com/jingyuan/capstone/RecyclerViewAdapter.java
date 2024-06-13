@@ -1,5 +1,6 @@
 package com.jingyuan.capstone;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,17 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.jingyuan.capstone.Controller.DetailActivity;
-import com.jingyuan.capstone.Model.ProductModel;
+import com.jingyuan.capstone.DTO.View.ProductItemDTO;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     Context context;
-    ArrayList<ProductModel> categoryList;
-    public RecyclerViewAdapter(Context context, ArrayList<ProductModel> categoryList) {
+    ArrayList<ProductItemDTO> productItemsList;
+    public RecyclerViewAdapter(Context context, ArrayList<ProductItemDTO> productItemsList) {
         this.context = context;
-        this.categoryList = categoryList;
+        this.productItemsList = productItemsList;
     }
 
     @NonNull
@@ -30,19 +30,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new MyViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.label.setText(categoryList.get(position).getLabel());
-        holder.thumbnail.setImageResource(categoryList.get(position).getThumbnail());
+        holder.name.setText(productItemsList.get(position).getName());
+        holder.price.setText(productItemsList.get(position).getPrice().toString());
+        holder.thumbnail.setImageBitmap(productItemsList.get(position).getThumbnail());
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("thumbnailID", categoryList.get(holder.getAdapterPosition()).getThumbnail());
-                intent.putExtra("label", categoryList.get(holder.getAdapterPosition()).getLabel());
-                intent.putExtra("des", categoryList.get(holder.getAdapterPosition()).getDes());
-                intent.putExtra("store", categoryList.get(holder.getAdapterPosition()).getStore());
-                intent.putExtra("phoneNumber", categoryList.get(holder.getAdapterPosition()).getPhoneNumber());
+                intent.putExtra("doc", productItemsList.get(holder.getAdapterPosition()).getDoc());
                 context.startActivity(intent);
             }
         });
@@ -50,16 +48,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return categoryList.size();
+        return productItemsList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView thumbnail;
-        TextView label;
+        TextView name;
+        TextView price;
         public MyViewHolder (@NonNull View itemView) {
             super(itemView);
             thumbnail = itemView.findViewById(R.id.thumbnail);
-            label = itemView.findViewById(R.id.label);
+            name = itemView.findViewById(R.id.name);
+            price = itemView.findViewById(R.id.price);
         }
     }
 }

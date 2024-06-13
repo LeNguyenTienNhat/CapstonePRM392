@@ -5,21 +5,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
         app:cardUseCompatPadding="true"
         tools:ignore="MissingConstraints">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:ignore="UseCompoundDrawables"
             android:background="@android:color/darker_gray">
-
             <ImageView
                 android:id="@+id/thumbnail"
                 android:background="@color/white"
@@ -27,18 +24,37 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:clickable="true"
+                android:src="@drawable/stv"
                 android:contentDescription="@string/thumbnail_content_des" />
-
-            <TextView
-                android:id="@+id/label"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:layout_marginTop="1dp"
-                android:textSize="12sp"
-                android:textColor="@color/dark_gray"
+                android:orientation="horizontal"
                 android:background="@android:color/white"
-                android:textAlignment="center" />
+                android:paddingHorizontal="5dp">
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp"
+                    android:layout_marginTop="1dp"
+                    android:textSize="14sp"
+                    android:text="STV-380"
+                    android:textColor="@color/dark_gray"
+                    android:textAlignment="textStart"
+                    />
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:text="50 USD"
+                    android:paddingVertical="8dp"
+                    android:layout_marginTop="1dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/dark_gray"
+                    />
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

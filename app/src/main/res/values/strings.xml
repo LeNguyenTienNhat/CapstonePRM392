@@ -16,6 +16,7 @@
     <string name="sign_up_button">SIGN UP</string>
     <string name="sign_in_suggest">Already have an account?</string>
     <string name="sign_up_suggest">First time? Sign up!</string>
+
     <string-array name="label">
         <item>Helmet</item>
         <item>Goggles</item>
@@ -23,10 +24,8 @@
         <item>Optic</item>
         <item>Med kit</item>
         <item>Carrier</item>
-        <item>Smersh</item>
-        <item>Rifle</item>
-        <item>Headset</item>
     </string-array>
+
     <string-array name="description">
         <item>A type of protective headgear that is specifically designed to protect the wearer head from ballistic threats such as bullets and shrapnel. These helmets are made from materials that are capable of stopping or deflecting bullets and other ballistic threats.</item>
         <item>Emergency response personnel use tactical eye wear to protect their eyes when working in the field. Common hazards that responders use tactical spectacles and goggles to protect against include shrapnel, blunt objects, chemicals, and blood and other biohazards.</item>
@@ -34,33 +33,5 @@
         <item>These scopes extend the standard engagement range for troops in ground combat and usually have lower magnification levels. They have simple reticles that help you acquire targets quickly at a close to medium range.</item>
         <item>Dressings and bandages (gauze role, sterile gauze pads, eye pad, roll of adhesive tape, elastic bandage for sprains, sterile cotton balls and swabs) Over-the-counter medicine for cuts, burns, and injuries. </item>
         <item>A type of body armor system designed to hold ballistic plates, which are inserted into pockets on the front and back of the carrier. These plates, typically made of ceramic, steel, or composite materials, offer protection against bullets and other ballistic threats.</item>
-        <item>The set of field equipment SMERCH was developed for the needs of infantry and reconnaissance units, designed to carry ammunition for the AK, SVD, PKM, RPK, or VSS as well as hand grenades, rocket cartridges and a minimum set of provisions and additional equipment.</item>
-        <item>The STV, short for Súng Trường Việt Nam, is a family of Vietnamese assault rifles. They are products of the Z111 Factory and are chambered in 7.62x39mm. The STV program was initiated to design the next generation mainline service rifles for the Vietnam People Army (VPA), using the technologies and experiences acquired from the IWI Galil ACE licensed production</item>
-        <item>The inner microphone captures the voice of the user, allowing for outgoing communication without the use of a boom microphone. The speaker transmits the incoming radio communication to the ear, mixed with the ambient sounds. It is also used for active noise reduction (ANR) when the ambient noise level exceeds 85 dBA.</item>
     </string-array>
-    <string-array name="store">
-        <item>Wagner PMC</item>
-        <item>Lockheed Martin</item>
-        <item>Glock</item>
-        <item>Kalashnikov</item>
-        <item>Dimitri Inc</item>
-        <item>John Doe Armoury</item>
-        <item>SlavaZ</item>
-        <item>Ford</item>
-        <item>Anti Terror</item>
-        <item>Z111</item>
-    </string-array>
-    <string-array name="phoneNumber">
-        <item>0123456789</item>
-        <item>0123456789</item>
-        <item>0123456789</item>
-        <item>0123456789</item>
-        <item>0123456789</item>
-        <item>0123456789</item>
-        <item>0123456789</item>
-        <item>0123456789</item>
-        <item>0123456789</item>
-        <item>0123456789</item>
-    </string-array>
-
 </resources>

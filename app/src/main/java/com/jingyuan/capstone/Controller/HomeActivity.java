@@ -5,10 +5,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
-
+import com.jingyuan.capstone.DTO.View.ProductItemDTO;
 import com.jingyuan.capstone.R;
 import com.jingyuan.capstone.RecyclerViewAdapter;
-import com.jingyuan.capstone.Model.ProductModel;
+import com.jingyuan.capstone.Service.HomeService;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
+    private final HomeService homeService = new HomeService();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,28 +27,11 @@ public class HomeActivity extends AppCompatActivity {
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        ArrayList<ProductModel> productList = setUpProductModels();
+        //Set up product items
+        ArrayList<ProductItemDTO> productList = homeService.setUpProducts();
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, productList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-    }
-
-    private ArrayList<ProductModel> setUpProductModels() {
-        ArrayList<ProductModel> productList = new ArrayList<>();
-        String[] productLabels = getResources().getStringArray(R.array.label);
-        String[] productDes = getResources().getStringArray(R.array.description);
-        String[] productStore = getResources().getStringArray(R.array.store);
-        String[] productPhoneNumber = getResources().getStringArray(R.array.phoneNumber);
-        int[] productThumbnail = {
-                R.drawable.blh, R.drawable.gog, R.drawable.grn,
-                R.drawable.hol, R.drawable.med, R.drawable.plc,
-                R.drawable.sme, R.drawable.stv, R.drawable.ths
-        };
-        for (int i = 0; i < productLabels.length; i++) {
-            productList.add(new ProductModel(productThumbnail[i], productLabels[i],
-                    productDes[i], productStore[i], productPhoneNumber[i]));
-        }
-        return productList;
     }
 
     @Override
