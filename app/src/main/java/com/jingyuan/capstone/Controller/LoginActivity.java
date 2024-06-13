@@ -37,11 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent i = new Intent(getApplicationContext(), HomeActivity.class);
-            startActivity(i);
-            finish();
-        }
+        updateUI();
     }
 
     public void onSignUpBtnClick(View v) {

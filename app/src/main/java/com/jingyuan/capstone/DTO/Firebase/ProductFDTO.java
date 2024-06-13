@@ -69,4 +69,8 @@ public class ProductFDTO {
     public void setStore(DocumentReference store) {
         this.store = store;
     }
+
+    public String toString(ProductFDTO productFDTO) {
+        return category + "\n " + name + "\n " + description + "\n " + price + "\n " + stock;
+    }
 }

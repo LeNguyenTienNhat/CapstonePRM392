@@ -30,13 +30,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new MyViewHolder(view);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.name.setText(productItemsList.get(position).getName());
-        holder.price.setText(productItemsList.get(position).getPrice().toString());
         holder.thumbnail.setImageBitmap(productItemsList.get(position).getThumbnail());
-        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+        holder.price.setText(productItemsList.get(position).getPrice().toString());
+        holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailActivity.class);
@@ -52,14 +51,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView thumbnail;
         TextView name;
         TextView price;
+        ImageView thumbnail;
         public MyViewHolder (@NonNull View itemView) {
             super(itemView);
-            thumbnail = itemView.findViewById(R.id.thumbnail);
             name = itemView.findViewById(R.id.name);
             price = itemView.findViewById(R.id.price);
+            thumbnail = itemView.findViewById(R.id.thumbnail);
         }
     }
 }
