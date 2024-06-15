@@ -1,11 +1,9 @@
 package com.jingyuan.capstone.DTO.View;
 
-import android.graphics.Bitmap;
-
 public class ProductItemDTO {
     private String doc;
     private String category;
-    private Bitmap thumbnail;
+    private String thumbnail;
     private String name;
     private Long price;
     private String status;
@@ -29,11 +27,11 @@ public class ProductItemDTO {
         this.category = category;
     }
 
-    public Bitmap getThumbnail() {
+    public String getThumbnail() {
         return thumbnail;
     }
 
-    public void setThumbnail(Bitmap thumbnail) {
+    public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
 

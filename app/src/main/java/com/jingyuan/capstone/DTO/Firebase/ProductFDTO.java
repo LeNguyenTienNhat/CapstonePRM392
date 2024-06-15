@@ -1,7 +1,5 @@
 package com.jingyuan.capstone.DTO.Firebase;
 
-import com.google.firebase.firestore.DocumentReference;
-
 public class ProductFDTO {
     private String category;
     private String thumbnail;
@@ -9,7 +7,7 @@ public class ProductFDTO {
     private String description;
     private Long price;
     private int stock;
-    private DocumentReference store;
+    private StoreFDTO store;
 
     public ProductFDTO() {
     }
@@ -23,7 +21,7 @@ public class ProductFDTO {
     }
 
     public String getThumbnail() {
-        return thumbnail;
+        return "https://firebasestorage.googleapis.com/v0/b/capstone-c62ee.appspot.com/o/" + thumbnail + "?alt=media";
     }
 
     public void setThumbnail(String thumbnail) {
@@ -62,11 +60,11 @@ public class ProductFDTO {
         this.stock = stock;
     }
 
-    public DocumentReference getStore() {
+    public StoreFDTO getStore() {
         return store;
     }
 
-    public void setStore(DocumentReference store) {
+    public void setStore(StoreFDTO store) {
         this.store = store;
     }
 

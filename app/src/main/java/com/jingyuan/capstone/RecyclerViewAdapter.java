@@ -3,6 +3,7 @@ package com.jingyuan.capstone;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import com.jingyuan.capstone.Controller.DetailActivity;
 import com.jingyuan.capstone.DTO.View.ProductItemDTO;
 import java.util.ArrayList;
@@ -30,10 +32,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new MyViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.name.setText(productItemsList.get(position).getName());
-        holder.thumbnail.setImageBitmap(productItemsList.get(position).getThumbnail());
+        String thumbnailURL = productItemsList.get(position).getThumbnail();
+
+        Log.d("GACHIMUCHI", "thumbnailURL:  "+thumbnailURL);
+
+        Glide.with(context).load(thumbnailURL).into(holder.thumbnail);
+
         holder.price.setText(productItemsList.get(position).getPrice().toString());
         holder.name.setOnClickListener(new View.OnClickListener() {
             @Override

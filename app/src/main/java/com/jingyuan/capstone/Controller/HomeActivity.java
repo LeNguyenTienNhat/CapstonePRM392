@@ -1,9 +1,6 @@
 package com.jingyuan.capstone.Controller;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,11 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +33,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         ArrayList<ProductItemDTO> productItemsList = new ArrayList<>();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Log.d("GACHIMUCHI", "Set up products");
         db.collection("Product").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot docSnap : task.getResult()) {
@@ -47,9 +41,7 @@ public class HomeActivity extends AppCompatActivity {
                     productItemsList.add(itemDTO);
                 }
                 RecyclerView recyclerView = findViewById(R.id.recycler_view);
-                Log.d("GACHIMUCHI", "Get adapter");
                 RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, productItemsList);
-                Log.d("GACHIMUCHI", "Set up adapter");
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
             }
@@ -62,15 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         itemDTO.setCategory(productFDTO.getCategory());
         itemDTO.setName(productFDTO.getName());
         itemDTO.setPrice(productFDTO.getPrice());
-        Log.d("GACHIMUCHI", "Before Bitmap");
-        try {
-            URL url = new URL(productFDTO.getThumbnail());
-            Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            itemDTO.setThumbnail(bitmap);
-        } catch (Exception e) {
-            Log.d("GACHIMUCHI", "Bitmap error" + e);
-        }
-        Log.d("GACHIMUCHI", "Bitmap" + itemDTO.getThumbnail().toString());
+        itemDTO.setThumbnail(productFDTO.getThumbnail());
         String status = "Available";
         if (productFDTO.getStock() == 0) status = "Out of stock";
         itemDTO.setStatus(status);
