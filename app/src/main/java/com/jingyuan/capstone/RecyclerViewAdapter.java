@@ -37,11 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.name.setText(productItemsList.get(position).getName());
         String thumbnailURL = productItemsList.get(position).getThumbnail();
-
-        Log.d("GACHIMUCHI", "thumbnailURL:  "+thumbnailURL);
-
         Glide.with(context).load(thumbnailURL).into(holder.thumbnail);
-
         holder.price.setText(productItemsList.get(position).getPrice().toString());
         holder.name.setOnClickListener(new View.OnClickListener() {
             @Override

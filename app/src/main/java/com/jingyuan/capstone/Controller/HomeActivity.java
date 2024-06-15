@@ -1,10 +1,12 @@
 package com.jingyuan.capstone.Controller;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.jingyuan.capstone.DTO.Firebase.ProductFDTO;
@@ -19,6 +21,9 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    TextView homeBtn;
+    TextView productsBtn;
+    TextView storeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,21 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        homeBtn = findViewById(R.id.home);
+        homeBtn.setOnClickListener(v -> {
+            Toast.makeText(HomeActivity.this, "Home Button clicked",
+                    Toast.LENGTH_SHORT).show();
+        });
+        productsBtn = findViewById(R.id.products);
+        productsBtn.setOnClickListener(v -> {
+            Toast.makeText(HomeActivity.this, "Product Button clicked",
+                    Toast.LENGTH_SHORT).show();
+        });
+        storeBtn = findViewById(R.id.stores);
+        storeBtn.setOnClickListener(v -> {
+            Toast.makeText(HomeActivity.this, "Store Button clicked",
+                    Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
@@ -61,23 +81,7 @@ public class HomeActivity extends AppCompatActivity {
         return itemDTO;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        if (itemId == R.id.search_option) {
-            Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (itemId == R.id.cart_option) {
-            Toast.makeText(this, "Cart", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    protected void updateTabNav() {
+        
     }
 }

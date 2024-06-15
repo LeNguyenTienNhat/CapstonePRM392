@@ -24,7 +24,6 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:clickable="true"
-                android:src="@drawable/stv"
                 android:contentDescription="@string/thumbnail_content_des" />
             <LinearLayout
                 android:layout_width="match_parent"

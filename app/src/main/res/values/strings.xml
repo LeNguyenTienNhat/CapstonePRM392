@@ -1,21 +1,21 @@
 <resources>
     <string name="app_name">DB Demo</string>
     <string name="thumbnail_content_des">Thumbnail</string>
-    <string name="shop">Shop</string>
-    <string name="featured">FEATURED</string>
-    <string name="deals">DEALS</string>
-    <string name="categories">CATEGORIES</string>
+    <string name="shop">Cửa hàng</string>
+    <string name="home">TRANG CHÍNH</string>
+    <string name="product">SẢN PHẨM</string>
+    <string name="categories">CỬA HÀNG</string>
     <string name="menu">menu</string>
-    <string name="cart">Cart</string>
-    <string name="back">Back</string>
-    <string name="search">Search</string>
+    <string name="cart">Giỏ hàng</string>
+    <string name="back">Quay lại</string>
+    <string name="search">Tìm kiếm</string>
     <string name="call">call</string>
-    <string name="user_field">Email or Phone</string>
-    <string name="password_field">Password</string>
-    <string name="sign_in_button">LOG IN</string>
-    <string name="sign_up_button">SIGN UP</string>
-    <string name="sign_in_suggest">Already have an account?</string>
-    <string name="sign_up_suggest">First time? Sign up!</string>
+    <string name="user_field">Email</string>
+    <string name="password_field">Mật khẩu</string>
+    <string name="sign_in_button">Đăng nhập</string>
+    <string name="sign_up_button">Đăng ký</string>
+    <string name="sign_in_suggest">Đã có tài khoản?</string>
+    <string name="sign_up_suggest">Chưa có tài khoản?</string>
 
     <string-array name="label">
         <item>Helmet</item>

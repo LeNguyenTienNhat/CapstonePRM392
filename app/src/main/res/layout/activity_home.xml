@@ -36,15 +36,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/home"
                 style="@style/tab"
-                android:text="@string/featured" />
+                android:text="@string/home"
+                android:textColor="@color/white"/>
             <TextView
+                android:id="@+id/products"
                 style="@style/tab"
-                android:text="@string/deals" />
+                android:text="@string/product" />
             <TextView
+                android:id="@+id/stores"
                 style="@style/tab"
-                android:text="@string/categories"
-                android:textColor="@color/white" />
+                android:text="@string/categories" />
         </GridLayout>
 
         <androidx.recyclerview.widget.RecyclerView
