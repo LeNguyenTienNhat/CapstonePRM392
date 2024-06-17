@@ -1,12 +1,6 @@
 package com.jingyuan.capstone.Controller;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.jingyuan.capstone.DTO.Firebase.ProductFDTO;
@@ -21,9 +15,6 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    TextView homeBtn;
-    TextView productsBtn;
-    TextView storeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +23,6 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-        homeBtn = findViewById(R.id.home);
-        homeBtn.setOnClickListener(v -> {
-            Toast.makeText(HomeActivity.this, "Home Button clicked",
-                    Toast.LENGTH_SHORT).show();
-        });
-        productsBtn = findViewById(R.id.products);
-        productsBtn.setOnClickListener(v -> {
-            Toast.makeText(HomeActivity.this, "Product Button clicked",
-                    Toast.LENGTH_SHORT).show();
-        });
-        storeBtn = findViewById(R.id.stores);
-        storeBtn.setOnClickListener(v -> {
-            Toast.makeText(HomeActivity.this, "Store Button clicked",
-                    Toast.LENGTH_SHORT).show();
-        });
     }
 
     @Override

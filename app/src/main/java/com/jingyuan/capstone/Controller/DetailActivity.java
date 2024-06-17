@@ -30,9 +30,9 @@ import com.jingyuan.capstone.R;
 public class DetailActivity extends AppCompatActivity {
     static int PERMISSION_CODE = 100;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    TextView label, price, des, stock, store, phone;
+    TextView label, price, des, stock, store;
     ImageView thumbnail;
-    ImageButton backBtn, callBtn;
+    ImageButton backBtn;
     String docData, phoneNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +46,7 @@ public class DetailActivity extends AppCompatActivity {
         des = findViewById(R.id.des);
         stock = findViewById(R.id.stock);
         store = findViewById(R.id.store);
-        phone = findViewById(R.id.phone);
         backBtn = findViewById(R.id.back);
-        callBtn = findViewById(R.id.call_btn);
         thumbnail = findViewById(R.id.thumbnail);
         Intent i = getIntent();
         docData = i.getStringExtra("doc");
@@ -68,7 +66,7 @@ public class DetailActivity extends AppCompatActivity {
                     ProductFDTO productFDTO = document.toObject(ProductFDTO.class);
                     assert productFDTO != null;
                     label.setText(productFDTO.getName());
-                    price.setText("Price: "+productFDTO.getPrice().toString()+" USD");
+                    price.setText(productFDTO.getPrice().toString()+" USD");
                     stock.setText("Stock available: " + productFDTO.getStock());
                     des.setText(productFDTO.getDescription());
                     Glide.with(DetailActivity.this).load(productFDTO.getThumbnail()).into(thumbnail);
@@ -83,14 +81,6 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DetailActivity.this.finish();
-            }
-        });
-        callBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + phoneNumber));
-                startActivity(intent);
             }
         });
     }

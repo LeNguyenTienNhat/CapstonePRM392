@@ -2,20 +2,23 @@
     <string name="app_name">DB Demo</string>
     <string name="thumbnail_content_des">Thumbnail</string>
     <string name="shop">Cửa hàng</string>
-    <string name="home">TRANG CHÍNH</string>
-    <string name="product">SẢN PHẨM</string>
-    <string name="categories">CỬA HÀNG</string>
     <string name="menu">menu</string>
-    <string name="cart">Giỏ hàng</string>
-    <string name="back">Quay lại</string>
-    <string name="search">Tìm kiếm</string>
+    <string name="cart">Cart</string>
+    <string name="back">Back</string>
+    <string name="search">Search</string>
     <string name="call">call</string>
     <string name="user_field">Email</string>
-    <string name="password_field">Mật khẩu</string>
-    <string name="sign_in_button">Đăng nhập</string>
-    <string name="sign_up_button">Đăng ký</string>
-    <string name="sign_in_suggest">Đã có tài khoản?</string>
-    <string name="sign_up_suggest">Chưa có tài khoản?</string>
+    <string name="password_field">Password</string>
+    <string name="sign_in_button">Sign in</string>
+    <string name="sign_up_button">Sign up</string>
+    <string name="sign_in_suggest">Already have an account?</string>
+    <string name="sign_up_suggest">No account yet?</string>
+    <string name="new_arrivals">New Arrivals</string>
+    <string name="show_all">Show all</string>
+    <string name="des">
+        An explosive weapon typically thrown by hand (also called hand grenade). A modern hand grenade generally consists of...
+    </string>
+    <string name="add_to_cart">Add to cart</string>
 
     <string-array name="label">
         <item>Helmet</item>

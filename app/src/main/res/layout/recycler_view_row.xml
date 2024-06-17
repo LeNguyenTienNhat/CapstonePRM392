@@ -5,18 +5,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
         app:cardUseCompatPadding="true"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="15dp"
         tools:ignore="MissingConstraints">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:ignore="UseCompoundDrawables"
-            android:background="@android:color/darker_gray">
+            android:background="@android:color/transparent">
+
             <ImageView
                 android:id="@+id/thumbnail"
                 android:background="@color/white"
@@ -24,34 +29,31 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:clickable="true"
+                android:src="@drawable/thumb"
                 android:contentDescription="@string/thumbnail_content_des" />
-            <LinearLayout
+
+            <TextView
+                android:id="@+id/name"
+                android:text="Name"
+                android:fontFamily="sans-serif-medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@android:color/white"
-                android:paddingHorizontal="5dp">
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="8dp"
-                    android:layout_marginTop="1dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/dark_gray"
-                    android:textAlignment="textStart"
-                    />
-                <TextView
-                    android:id="@+id/price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="textEnd"
-                    android:paddingVertical="8dp"
-                    android:layout_marginTop="1dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/dark_gray"
-                    />
-            </LinearLayout>
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/price"
+                android:text="PRICE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/dark_gray"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"/>
+
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

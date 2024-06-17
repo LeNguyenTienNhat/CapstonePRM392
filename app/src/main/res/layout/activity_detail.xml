@@ -4,84 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@android:color/darker_gray">
+        android:paddingHorizontal="15dp"
+        android:background="@android:color/transparent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:background="@color/red">
+            android:layout_height="60dp"
+            android:paddingHorizontal="5dp"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="10dp">
+
             <ImageButton
                 android:id="@+id/back"
                 style="@style/bar_component"
                 android:contentDescription="@string/back"
                 android:layout_marginStart="15dp"
                 android:src="@drawable/arrow_back"/>
+
             <ImageButton
                 android:id="@+id/options"
                 style="@style/bar_component"
                 android:contentDescription="@string/menu"
-                android:src="@drawable/outline_menu"
-                />
+                android:src="@drawable/shopping_cart"
+                android:layout_marginStart="315dp"/>
+
         </LinearLayout>
 
         <ImageView
             android:id="@+id/thumbnail"
-            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/thumbnail_content_des"/>
+            android:contentDescription="@string/thumbnail_content_des"
+            android:src="@drawable/thumb" />
+
         <TextView
             android:id="@+id/label"
             style="@style/detail_text_view"
-            android:text="Name"
-            android:textAlignment="center"
-            android:fontFamily="sans-serif-condensed-medium"/>
+            android:text="STV-380"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif-medium"/>
         <TextView
             android:id="@+id/price"
-            android:text="Price"
-            style="@style/detail_text_view"
-            android:textAlignment="textStart"/>
+            android:text="200 USD"
+            android:textColor="#8E8E8E"
+            android:textSize="20sp"
+            style="@style/detail_text_view"/>
+
+        <Button
+            android:id="@+id/add_to_cart_btn"
+            android:text="@string/add_to_cart"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/dark_gray"/>
+
         <TextView
             android:id="@+id/des"
-            android:text="Description"
-            style="@style/detail_text_view"
-            android:textAlignment="textStart"/>
+            android:text="@string/des"
+            android:layout_marginTop="15dp"
+            style="@style/detail_text_view"/>
         <TextView
             android:id="@+id/store"
-            android:text="Store"
-            style="@style/detail_text_view"
-            android:textAlignment="textStart"/>
+            android:text="Store: SS0"
+            android:layout_marginTop="10dp"
+            style="@style/detail_text_view"/>
         <TextView
             android:id="@+id/stock"
             android:text="Stock"
-            style="@style/detail_text_view"
-            android:textAlignment="textStart"/>
-        <LinearLayout
-            style="@style/detail_text_view"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_gravity="center"
-                android:id="@+id/phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageButton
-                android:id="@+id/call_btn"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="15dp"
-                android:background="@color/red"
-                android:contentDescription="@string/call"
-                android:src="@drawable/call"/>
-        </LinearLayout>
-
+            android:layout_marginTop="10dp"
+            style="@style/detail_text_view"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
