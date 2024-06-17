@@ -3,7 +3,6 @@ package com.jingyuan.capstone;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +27,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.recycler_view_row, parent, false);
+        View view = inflater.inflate(R.layout.product_item_recview, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -39,7 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String thumbnailURL = productItemsList.get(position).getThumbnail();
         Glide.with(context).load(thumbnailURL).into(holder.thumbnail);
         holder.price.setText(productItemsList.get(position).getPrice().toString());
-        holder.name.setOnClickListener(new View.OnClickListener() {
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailActivity.class);
