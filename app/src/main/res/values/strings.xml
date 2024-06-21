@@ -13,7 +13,7 @@
     <string name="sign_up_button">Sign up</string>
     <string name="sign_in_suggest">Already have an account?</string>
     <string name="sign_up_suggest">No account yet?</string>
-    <string name="new_arrivals">New Arrivals</string>
+    <string name="best_sellers">Best seller</string>
     <string name="show_all">Show all</string>
     <string name="des">
         An explosive weapon typically thrown by hand (also called hand grenade). A modern hand grenade generally consists of...
@@ -24,7 +24,6 @@
     <string name="profile">Profile</string>
 
     <string-array name="label">
-        <item>Helmet</item>
         <item>Goggles</item>
         <item>Grenade</item>
         <item>Optic</item>
@@ -33,7 +32,7 @@
     </string-array>
 
     <string-array name="description">
-        <item>A type of protective headgear that is specifically designed to protect the wearer head from ballistic threats such as bullets and shrapnel. These helmets are made from materials that are capable of stopping or deflecting bullets and other ballistic threats.</item>
+        <item></item>
         <item>Emergency response personnel use tactical eye wear to protect their eyes when working in the field. Common hazards that responders use tactical spectacles and goggles to protect against include shrapnel, blunt objects, chemicals, and blood and other biohazards.</item>
         <item>An explosive weapon typically thrown by hand (also called hand grenade). A modern hand grenade generally consists of an explosive charge ("filler"), a detonator mechanism, an internal striker to trigger the detonator, an arming safety secured by a transport safety. </item>
         <item>These scopes extend the standard engagement range for troops in ground combat and usually have lower magnification levels. They have simple reticles that help you acquire targets quickly at a close to medium range.</item>
@@ -47,8 +46,9 @@
     <string name="nav_header_subtitle">sample@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="categories">Categories</string>
+    <string name="trending">Trending</string>
+    <string name="explore">Explore</string>
+    <string name="my_cart">My Cart</string>
+    <string name="the_cart_is_empty">The cart is empty :(</string>
 </resources>

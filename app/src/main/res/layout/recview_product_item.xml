@@ -23,7 +23,7 @@
             android:background="@android:color/transparent">
 
             <ImageView
-                android:id="@+id/thumbnail"
+                android:id="@+id/item_thumbnail"
                 android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:contentDescription="@string/thumbnail_content_des" />
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/item_name"
                 android:text="Name"
                 android:fontFamily="sans-serif-medium"
                 android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:layout_marginBottom="5dp"/>
 
             <TextView
-                android:id="@+id/price"
+                android:id="@+id/item_price"
                 android:text="PRICE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

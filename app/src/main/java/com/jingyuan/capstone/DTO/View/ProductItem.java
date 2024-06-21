@@ -1,14 +1,14 @@
 package com.jingyuan.capstone.DTO.View;
 
-public class ProductItemDTO {
+public class ProductItem {
     private String doc;
     private String category;
     private String thumbnail;
     private String name;
-    private Long price;
+    private int price;
     private String status;
 
-    public ProductItemDTO() {
+    public ProductItem() {
     }
 
     public String getDoc() {
@@ -43,11 +43,11 @@ public class ProductItemDTO {
         this.name = name;
     }
 
-    public Long getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

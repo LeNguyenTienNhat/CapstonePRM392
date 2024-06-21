@@ -1,22 +1,22 @@
 package com.jingyuan.capstone.DTO.Firebase;
 
 public class ProductFDTO {
-    private String category;
+    private CategoryFDTO category;
     private String thumbnail;
     private String name;
     private String description;
-    private Long price;
+    private int price;
     private int stock;
     private StoreFDTO store;
 
     public ProductFDTO() {
     }
 
-    public String getCategory() {
+    public CategoryFDTO getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(CategoryFDTO category) {
         this.category = category;
     }
 
@@ -44,11 +44,11 @@ public class ProductFDTO {
         this.description = description;
     }
 
-    public Long getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

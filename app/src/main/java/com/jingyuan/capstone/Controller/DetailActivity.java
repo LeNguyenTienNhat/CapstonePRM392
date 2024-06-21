@@ -2,12 +2,15 @@ package com.jingyuan.capstone.Controller;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,23 +26,32 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
 import com.jingyuan.capstone.DTO.Firebase.ProductFDTO;
 import com.jingyuan.capstone.DTO.Firebase.StoreFDTO;
+import com.jingyuan.capstone.DTO.View.Cart;
+import com.jingyuan.capstone.DTO.View.CartItem;
 import com.jingyuan.capstone.R;
+
+import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
     static int PERMISSION_CODE = 100;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    TextView label, price, des, stock, store;
+    SharedPreferences sf;
+    ProductFDTO productFDTO;
+    TextView label, price, des, stock, store, cart_notice;
     ImageView thumbnail;
-    ImageButton backBtn;
+    ImageButton backBtn, cartBtn;
+    Button addToCartBtn;
     String docData, phoneNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        if (ContextCompat.checkSelfPermission(DetailActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(DetailActivity.this, new String[]{Manifest.permission.CALL_PHONE},PERMISSION_CODE);
+        if (ContextCompat.checkSelfPermission(DetailActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(DetailActivity.this, new String[]{Manifest.permission.CALL_PHONE}, PERMISSION_CODE);
         }
         label = findViewById(R.id.label);
         price = findViewById(R.id.price);
@@ -48,6 +60,9 @@ public class DetailActivity extends AppCompatActivity {
         store = findViewById(R.id.store);
         backBtn = findViewById(R.id.back);
         thumbnail = findViewById(R.id.thumbnail);
+        addToCartBtn = findViewById(R.id.add_to_cart_btn);
+        cartBtn = findViewById(R.id.cart);
+        cart_notice = findViewById(R.id.cart_notice);
         Intent i = getIntent();
         docData = i.getStringExtra("doc");
     }
@@ -62,11 +77,10 @@ public class DetailActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    Log.d("GACHIMUCHI", "DocumentSnapshot data: " + document.getData());
-                    ProductFDTO productFDTO = document.toObject(ProductFDTO.class);
+                    productFDTO = document.toObject(ProductFDTO.class);
                     assert productFDTO != null;
                     label.setText(productFDTO.getName());
-                    price.setText(productFDTO.getPrice().toString()+" USD");
+                    price.setText(productFDTO.getPrice() + " USD");
                     stock.setText("Stock available: " + productFDTO.getStock());
                     des.setText(productFDTO.getDescription());
                     Glide.with(DetailActivity.this).load(productFDTO.getThumbnail()).into(thumbnail);
@@ -77,11 +91,59 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DetailActivity.this.finish();
-            }
+        if (checkAddedToCart(docData)) {
+            updateStatus();
+        } else {
+            addToCartBtn.setOnClickListener(v -> DetailActivity.this.addToCart());
+        }
+
+        backBtn.setOnClickListener(v -> DetailActivity.this.finish());
+
+        cartBtn.setOnClickListener(v -> {
+            Intent i = new Intent(DetailActivity.this, CartActivity.class);
+            startActivity(i);
+            finish();
         });
     }
+
+    public boolean checkAddedToCart(String doc) {
+        sf = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+        String plainJsonString = sf.getString("Cart", "empty");
+        if (!plainJsonString.equalsIgnoreCase("empty")) {
+            Gson gson = new Gson();
+            Cart cart = gson.fromJson(plainJsonString, Cart.class);
+            for (CartItem item : cart.getItems()) {
+                if (item.getDoc().equalsIgnoreCase(doc)) return true;
+            }
+        }
+        return false;
+    }
+
+    public void addToCart() {
+        Cart cart = new Cart();
+        ArrayList<CartItem> cartList = new ArrayList<>();
+        sf = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+        String plainJsonString = sf.getString("Cart", "empty");
+        if (!plainJsonString.equalsIgnoreCase("empty")) {
+            Gson gson = new Gson();
+            cart = gson.fromJson(plainJsonString, Cart.class);
+            cartList = cart.getItems();
+        }
+        CartItem item = new CartItem(docData, productFDTO.getName(),
+                1, productFDTO.getPrice(), productFDTO.getThumbnail());
+        cartList.add(item);
+        cart.setItems(cartList);
+        SharedPreferences.Editor editor = sf.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(cart);
+        editor.putString("Cart", json);
+        editor.apply();
+        updateStatus();
+    }
+
+    public void updateStatus() {
+        addToCartBtn.setVisibility(View.GONE);
+        cart_notice.setVisibility(View.VISIBLE);
+    }
+
 }

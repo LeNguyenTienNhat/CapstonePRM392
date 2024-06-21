@@ -1,4 +1,4 @@
-package com.jingyuan.capstone;
+package com.jingyuan.capstone.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,13 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.jingyuan.capstone.Controller.DetailActivity;
-import com.jingyuan.capstone.DTO.View.ProductItemDTO;
+import com.jingyuan.capstone.DTO.View.ProductItem;
+import com.jingyuan.capstone.R;
+
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     Context context;
-    ArrayList<ProductItemDTO> productItemsList;
-    public RecyclerViewAdapter(Context context, ArrayList<ProductItemDTO> productItemsList) {
+    ArrayList<ProductItem> productItemsList;
+    public RecyclerViewAdapter(Context context, ArrayList<ProductItem> productItemsList) {
         this.context = context;
         this.productItemsList = productItemsList;
     }
@@ -27,7 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.product_item_recview, parent, false);
+        View view = inflater.inflate(R.layout.recview_product_item, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -37,7 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.name.setText(productItemsList.get(position).getName());
         String thumbnailURL = productItemsList.get(position).getThumbnail();
         Glide.with(context).load(thumbnailURL).into(holder.thumbnail);
-        holder.price.setText(productItemsList.get(position).getPrice().toString());
+        holder.price.setText(productItemsList.get(position).getPrice()+"");
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,9 +61,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         ImageView thumbnail;
         public MyViewHolder (@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
-            price = itemView.findViewById(R.id.price);
-            thumbnail = itemView.findViewById(R.id.thumbnail);
+            name = itemView.findViewById(R.id.item_name);
+            price = itemView.findViewById(R.id.item_price);
+            thumbnail = itemView.findViewById(R.id.item_thumbnail);
         }
     }
 }
