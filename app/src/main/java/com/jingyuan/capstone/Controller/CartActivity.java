@@ -22,10 +22,8 @@ import com.jingyuan.capstone.R;
 import java.util.ArrayList;
 
 public class CartActivity extends AppCompatActivity {
-    public static final String CART_EMPTY = "cart_status";
     TextView cartStatusNotice;
     SharedPreferences sf;
-    SharedPreferences.Editor editor;
     RecyclerView cartItems;
     ImageButton backBtn;
 
@@ -42,32 +40,22 @@ public class CartActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         sf = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
-        editor = sf.edit();
-        editor.putBoolean(CART_EMPTY, false);
-        editor.apply();
-        Log.d("GACHIMUCHI", "" + sf.getBoolean(CART_EMPTY, true));
-        if (sf.getBoolean(CART_EMPTY, true)) {
+        String plainJsonString = sf.getString("Cart", "empty");
+        if (plainJsonString.equalsIgnoreCase("empty")) {
             cartStatusNotice.setVisibility(View.VISIBLE);
         } else {
             cartItems.setVisibility(View.VISIBLE);
-            showCartItems();
+            Gson gson = new Gson();
+            Cart cart = gson.fromJson(plainJsonString, Cart.class);
+            ArrayList<CartItem> cartList = cart.getItems();
+            CartItemAdapter adapter = new CartItemAdapter(this, cartList);
+            cartItems.setAdapter(adapter);
+            cartItems.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         }
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(CartActivity.this, HomeActivity.class);
-                startActivity(i);
-            }
+        backBtn.setOnClickListener(v -> {
+            Intent i = new Intent(CartActivity.this, HomeActivity.class);
+            startActivity(i);
         });
     }
 
-    public void showCartItems() {
-        Gson gson = new Gson();
-        String plainJsonString = sf.getString("Cart", "");
-        Cart cart = gson.fromJson(plainJsonString, Cart.class);
-        ArrayList<CartItem> cartList = cart.getItems();
-        CartItemAdapter adapter = new CartItemAdapter(this, cartList);
-        cartItems.setAdapter(adapter);
-        cartItems.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-    }
 }

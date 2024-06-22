@@ -29,6 +29,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Toolbar toolbar;
+    ImageButton cartBtn, shopBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +40,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
-        ImageButton shopBtn = findViewById(R.id.shop);
-        shopBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, ShopActivity.class);
-                startActivity(intent);
-            }
+        shopBtn = findViewById(R.id.shop);
+        shopBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, ShopActivity.class);
+            startActivity(intent);
         });
 
+        cartBtn = findViewById(R.id.cart);
+        cartBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, CartActivity.class);
+            startActivity(intent);
+        });
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);

@@ -92,6 +92,7 @@ public class DetailActivity extends AppCompatActivity {
         });
 
         if (checkAddedToCart(docData)) {
+            Log.d("GACHI", "Added or not: "+ checkAddedToCart(docData));
             updateStatus();
         } else {
             addToCartBtn.setOnClickListener(v -> DetailActivity.this.addToCart());
@@ -109,12 +110,13 @@ public class DetailActivity extends AppCompatActivity {
     public boolean checkAddedToCart(String doc) {
         sf = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
         String plainJsonString = sf.getString("Cart", "empty");
-        if (!plainJsonString.equalsIgnoreCase("empty")) {
-            Gson gson = new Gson();
-            Cart cart = gson.fromJson(plainJsonString, Cart.class);
-            for (CartItem item : cart.getItems()) {
-                if (item.getDoc().equalsIgnoreCase(doc)) return true;
-            }
+        if (plainJsonString.equalsIgnoreCase("empty")) {
+            return false;
+        }
+        Gson gson = new Gson();
+        Cart cart = gson.fromJson(plainJsonString, Cart.class);
+        for (CartItem item : cart.getItems()) {
+            if (item.getDoc().equalsIgnoreCase(doc)) return true;
         }
         return false;
     }
@@ -137,6 +139,7 @@ public class DetailActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String json = gson.toJson(cart);
         editor.putString("Cart", json);
+        editor.putBoolean("cart_status", false);
         editor.apply();
         updateStatus();
     }
