@@ -39,6 +39,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation ("com.firebaseui:firebase-ui-storage:7.2.0")
     implementation ("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.firebase:firebase-messaging")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

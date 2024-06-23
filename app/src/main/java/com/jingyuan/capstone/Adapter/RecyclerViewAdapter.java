@@ -40,13 +40,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String thumbnailURL = productItemsList.get(position).getThumbnail();
         Glide.with(context).load(thumbnailURL).into(holder.thumbnail);
         holder.price.setText(productItemsList.get(position).getPrice()+"");
-        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("doc", productItemsList.get(holder.getAdapterPosition()).getDoc());
-                context.startActivity(intent);
-            }
+        holder.thumbnail.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("doc", productItemsList.get(holder.getAdapterPosition()).getDoc());
+            context.startActivity(intent);
         });
     }
 
