@@ -4,7 +4,7 @@
     android:id="@+id/login_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3B5A99">
+    android:background="@color/dark_gray">
 
     <LinearLayout
         android:layout_width="match_parent"

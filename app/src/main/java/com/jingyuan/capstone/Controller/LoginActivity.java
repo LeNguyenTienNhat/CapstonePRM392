@@ -1,14 +1,18 @@
 package com.jingyuan.capstone.Controller;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -31,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        setContentView(R.layout.activity_login);
         usernameInputField = findViewById(R.id.user);
         passwordInputField = findViewById(R.id.password);
         Button signInBtn = findViewById(R.id.signInBtn);
@@ -43,19 +46,22 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        testUpdateUI();
+//        testUpdateUI();
+        Intent i = new Intent(getApplicationContext(), ChatActivity.class);
+        startActivity(i);
+        finish();
     }
 
     public void onSignUpBtnClick(View v) {
         String username = usernameInputField.getText().toString();
         String password = passwordInputField.getText().toString();
-        createAccount(username,password);
+        createAccount(username, password);
     }
 
     public void onSignInBtnClick(View v) {
         String username = usernameInputField.getText().toString();
         String password = passwordInputField.getText().toString();
-        signIn(username,password);
+        signIn(username, password);
     }
 
     public void setUpSignUpScreen(View v) {
@@ -87,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Account created successfully.",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
+                            assert user != null;
                             updateUI(user);
                         } else {
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
@@ -103,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Sign in successfully.",
                                 Toast.LENGTH_SHORT).show();
                         FirebaseUser user = mAuth.getCurrentUser();
+                        assert user != null;
                         updateUI(user);
                     } else {
                         Toast.makeText(LoginActivity.this, "Authentication failed.",
@@ -121,9 +129,14 @@ public class LoginActivity extends AppCompatActivity {
                 DocumentSnapshot snap = task.getResult();
                 UserDTO userDTO = snap.toObject(UserDTO.class);
                 assert userDTO != null;
-                i.putExtra("username",userDTO.getUsername());
-                i.putExtra("email",userDTO.getEmail());
-                i.putExtra("pfp",userDTO.getPfp());
+
+                SharedPreferences sf = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sf.edit();
+                editor.putString("username", userDTO.getUsername());
+                editor.putString("email", userDTO.getEmail());
+                editor.putString("pfp", userDTO.getPfp());
+                editor.apply();
+
                 startActivity(i);
                 finish();
             }
@@ -131,10 +144,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void testUpdateUI() {
+        SharedPreferences sf = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sf.edit();
+        editor.putString("username", "Firefly");
+        editor.putString("email", "firefly@gmail.com");
+        editor.putString("pfp", "https://firebasestorage.googleapis.com/v0/b/capstone-c62ee.appspot.com/o/sam.jpg?alt=media");
+        editor.apply();
         Intent i = new Intent(getApplicationContext(), HomeActivity.class);
-        i.putExtra("username","Ambatukam");
-        i.putExtra("email","ambatukam@gmail.com");
-        i.putExtra("pfp","https://firebasestorage.googleapis.com/v0/b/capstone-c62ee.appspot.com/o/1686506930924.jpg?alt=media");
         startActivity(i);
         finish();
     }

@@ -38,7 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.name.setText(productItemsList.get(position).getName());
         String thumbnailURL = productItemsList.get(position).getThumbnail();
-        Glide.with(context).load(thumbnailURL).into(holder.thumbnail);
+        Glide.with(context).load(thumbnailURL).placeholder(R.drawable.loading).into(holder.thumbnail);
         holder.price.setText(productItemsList.get(position).getPrice()+"");
         holder.thumbnail.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailActivity.class);

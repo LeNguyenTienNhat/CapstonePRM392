@@ -2,13 +2,13 @@ package com.jingyuan.capstone.Controller;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -20,8 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -70,8 +68,6 @@ public class HomeActivity extends AppCompatActivity {
                 toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-        getFCMToken();
     }
 
     @Override
@@ -97,12 +93,11 @@ public class HomeActivity extends AppCompatActivity {
         TextView navUsername = header.findViewById(R.id.username);
         TextView navEmail = header.findViewById(R.id.email);
         ImageView pfp = header.findViewById(R.id.pfp);
-
-        Intent i = getIntent();
-        navUsername.setText(i.getStringExtra("username"));
-        navEmail.setText(i.getStringExtra("email"));
-        Glide.with(HomeActivity.this).load(i.getStringExtra("pfp")).into(pfp);
-        Log.d("GACHI", i.getStringExtra("pfp") + "\n");
+        SharedPreferences sf = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+        navUsername.setText(sf.getString("username","error"));
+        navEmail.setText(sf.getString("email","error"));
+        String pfpURL = sf.getString("pfp","error");
+        Glide.with(HomeActivity.this).load(pfpURL).placeholder(R.drawable.sam).dontAnimate().into(pfp);
     }
 
     private static ProductItem getProductItemDTO(QueryDocumentSnapshot docSnap, ProductFDTO productFDTO) {
