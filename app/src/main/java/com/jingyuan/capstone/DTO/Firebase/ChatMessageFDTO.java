@@ -10,6 +10,12 @@ public class ChatMessageFDTO {
     public ChatMessageFDTO() {
     }
 
+    public ChatMessageFDTO(String sender, String message, Timestamp timestamp) {
+        this.sender = sender;
+        this.message = message;
+        this.timestamp = timestamp;
+    }
+
     public String getSender() {
         return sender;
     }

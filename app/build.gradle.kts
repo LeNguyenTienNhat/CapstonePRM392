@@ -34,12 +34,13 @@ android {
 
 dependencies {
     //noinspection UseTomlInstead
-    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-auth")
     implementation ("com.firebaseui:firebase-ui-storage:7.2.0")
     implementation ("com.google.code.gson:gson:2.10.1")
     implementation("com.google.firebase:firebase-messaging")
+    implementation("com.firebaseui:firebase-ui-firestore:7.1.1")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
